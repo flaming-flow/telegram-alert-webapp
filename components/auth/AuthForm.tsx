@@ -64,12 +64,17 @@ export default function AuthForm({ dict }: AuthFormProps) {
 
   useEffect(() => {
     // Check if running in Telegram WebApp
-    const tg = (window as unknown as { Telegram?: { WebApp?: { initData?: string; expand?: () => void; ready?: () => void } } }).Telegram?.WebApp;
-    if (tg?.initData) {
+    const tg = (window as unknown as { Telegram?: { WebApp?: { initData?: string; expand?: () => void; ready?: () => void; platform?: string } } }).Telegram?.WebApp;
+
+    console.log('WebApp check:', { hasTg: !!tg, initData: tg?.initData, platform: tg?.platform });
+
+    // Check if WebApp is available (initData may be empty string in some cases)
+    if (tg && typeof tg.sendData === 'function') {
       setIsWebApp(true);
       // Expand to full screen
       tg.expand?.();
       tg.ready?.();
+      console.log('WebApp initialized, expanded');
     }
 
     // Restore state from localStorage (for when user returns after getting code)
@@ -199,9 +204,23 @@ export default function AuthForm({ dict }: AuthFormProps) {
   const sendToBot = (session?: string) => {
     const tg = (window as unknown as { Telegram?: { WebApp?: { sendData: (data: string) => void; close: () => void } } }).Telegram?.WebApp;
     const sessionToSend = session || sessionString;
+
+    console.log('sendToBot called', { hasTg: !!tg, hasSession: !!sessionToSend, isWebApp });
+
     if (tg && sessionToSend) {
-      tg.sendData(sessionToSend);
-      tg.close();
+      try {
+        tg.sendData(sessionToSend);
+        console.log('sendData called successfully');
+        // close is called automatically after sendData, but call it just in case
+        setTimeout(() => tg.close(), 500);
+      } catch (e) {
+        console.error('sendData error:', e);
+        // Fallback: show success screen for manual copy
+        setStep('success');
+      }
+    } else {
+      // Fallback if WebApp API not available
+      setStep('success');
     }
   };
 
