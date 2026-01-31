@@ -1,0 +1,10 @@
+{
+  "/[lang]/auth/page": "/[lang]/auth",
+  "/[lang]/page": "/[lang]",
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/api/code/route": "/api/code",
+  "/api/init/route": "/api/init",
+  "/api/password/route": "/api/password",
+  "/favicon.ico/route": "/favicon.ico"
+}

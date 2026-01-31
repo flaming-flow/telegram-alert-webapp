@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Platform binaries (can be rebuilt from source)
+binaries/
+
+# Environment variables (may contain API credentials)
+.env
+
+# Session files (contain sensitive auth tokens)
+telegram-session-*.txt
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo

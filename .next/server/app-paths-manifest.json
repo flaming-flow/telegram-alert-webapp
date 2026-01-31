@@ -1,0 +1,10 @@
+{
+  "/[lang]/auth/page": "app/[lang]/auth/page.js",
+  "/[lang]/page": "app/[lang]/page.js",
+  "/_global-error/page": "app/_global-error/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/code/route": "app/api/code/route.js",
+  "/api/init/route": "app/api/init/route.js",
+  "/api/password/route": "app/api/password/route.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js"
+}
