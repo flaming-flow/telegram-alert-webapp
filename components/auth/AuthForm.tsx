@@ -48,7 +48,7 @@ interface AuthFormProps {
   dict: AuthDict;
 }
 
-type Step = 'phone' | 'code' | 'password' | 'success';
+type Step = 'phone' | 'code' | 'password' | 'success' | 'sending';
 
 export default function AuthForm({ dict }: AuthFormProps) {
   const [step, setStep] = useState<Step>('phone');
@@ -143,11 +143,7 @@ export default function AuthForm({ dict }: AuthFormProps) {
       } else if (data.needs2FA) {
         setStep('password');
       } else {
-        setSessionString(data.session);
-        // Clear saved state on success
-        localStorage.removeItem('auth_phone');
-        localStorage.removeItem('auth_sessionId');
-        setStep('success');
+        handleAuthSuccess(data.session);
       }
     } catch {
       setError('Network error. Please try again.');
@@ -176,11 +172,7 @@ export default function AuthForm({ dict }: AuthFormProps) {
       if (data.error) {
         setError(data.error);
       } else {
-        setSessionString(data.session);
-        // Clear saved state on success
-        localStorage.removeItem('auth_phone');
-        localStorage.removeItem('auth_sessionId');
-        setStep('success');
+        handleAuthSuccess(data.session);
       }
     } catch {
       setError('Network error. Please try again.');
@@ -204,11 +196,30 @@ export default function AuthForm({ dict }: AuthFormProps) {
     URL.revokeObjectURL(url);
   };
 
-  const sendToBot = () => {
+  const sendToBot = (session?: string) => {
     const tg = (window as unknown as { Telegram?: { WebApp?: { sendData: (data: string) => void; close: () => void } } }).Telegram?.WebApp;
-    if (tg && sessionString) {
-      tg.sendData(sessionString);
+    const sessionToSend = session || sessionString;
+    if (tg && sessionToSend) {
+      tg.sendData(sessionToSend);
       tg.close();
+    }
+  };
+
+  // Auto-send session to bot when in WebApp
+  const handleAuthSuccess = (session: string) => {
+    localStorage.removeItem('auth_phone');
+    localStorage.removeItem('auth_sessionId');
+    setSessionString(session);
+
+    if (isWebApp) {
+      // Show success screen briefly, then send to bot
+      setStep('sending');
+      setTimeout(() => {
+        sendToBot(session);
+      }, 1500);
+    } else {
+      // Show success screen for manual copy
+      setStep('success');
     }
   };
 
@@ -217,6 +228,7 @@ export default function AuthForm({ dict }: AuthFormProps) {
       case 'phone': return 1;
       case 'code': return 2;
       case 'password': return 2;
+      case 'sending': return 3;
       case 'success': return 3;
     }
   };
@@ -350,6 +362,20 @@ export default function AuthForm({ dict }: AuthFormProps) {
         </form>
       )}
 
+      {/* Sending to bot step (WebApp only) */}
+      {step === 'sending' && (
+        <div className="text-center py-8">
+          <div className="text-5xl mb-4">✅</div>
+          <h2 className="text-xl font-semibold text-[var(--text-primary)] mb-2">
+            Авторизация успешна!
+          </h2>
+          <p className="text-[var(--text-secondary)] mb-4">
+            Отправляю данные боту...
+          </p>
+          <span className="spinner" />
+        </div>
+      )}
+
       {/* Success step */}
       {step === 'success' && (
         <div>
@@ -371,7 +397,7 @@ export default function AuthForm({ dict }: AuthFormProps) {
 
             {isWebApp && (
               <button
-                onClick={sendToBot}
+                onClick={() => sendToBot()}
                 className="w-full py-3 px-4 rounded-xl font-medium text-sm text-white transition-all hover:opacity-90"
                 style={{ background: 'linear-gradient(135deg, #2AABEE 0%, #229ED9 100%)' }}
               >
