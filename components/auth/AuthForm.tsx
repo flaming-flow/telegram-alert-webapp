@@ -61,20 +61,38 @@ export default function AuthForm({ dict }: AuthFormProps) {
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
   const [isWebApp, setIsWebApp] = useState(false);
+  const [debugInfo, setDebugInfo] = useState<string[]>([]);
+
+  const addDebug = (msg: string) => {
+    console.log(msg);
+    setDebugInfo(prev => [...prev, `${new Date().toLocaleTimeString()}: ${msg}`]);
+  };
 
   useEffect(() => {
     // Check if running in Telegram WebApp
     const tg = (window as unknown as { Telegram?: { WebApp?: { initData?: string; expand?: () => void; ready?: () => void; platform?: string } } }).Telegram?.WebApp;
 
-    console.log('WebApp check:', { hasTg: !!tg, initData: tg?.initData, platform: tg?.platform });
+    addDebug(`WebApp: tg=${!!tg}, initData=${!!tg?.initData}, platform=${tg?.platform}`);
 
     // Check if WebApp is available (initData may be empty string in some cases)
-    if (tg && typeof (tg as unknown as { sendData?: unknown }).sendData === 'function') {
-      setIsWebApp(true);
-      // Expand to full screen
-      tg.expand?.();
-      tg.ready?.();
-      console.log('WebApp initialized, expanded');
+    if (tg) {
+      addDebug('Calling expand() and ready()');
+      try {
+        tg.expand?.();
+        tg.ready?.();
+        addDebug('expand/ready called');
+      } catch (e) {
+        addDebug(`expand error: ${e}`);
+      }
+
+      if (typeof (tg as unknown as { sendData?: unknown }).sendData === 'function') {
+        setIsWebApp(true);
+        addDebug('isWebApp = true');
+      } else {
+        addDebug('sendData not a function');
+      }
+    } else {
+      addDebug('No Telegram object');
     }
 
     // Restore state from localStorage (for when user returns after getting code)
@@ -205,39 +223,42 @@ export default function AuthForm({ dict }: AuthFormProps) {
     const tg = (window as unknown as { Telegram?: { WebApp?: { sendData: (data: string) => void; close: () => void } } }).Telegram?.WebApp;
     const sessionToSend = session || sessionString;
 
-    console.log('sendToBot called', { hasTg: !!tg, hasSession: !!sessionToSend, isWebApp });
+    addDebug(`sendToBot: tg=${!!tg}, session=${sessionToSend?.length || 0} chars`);
 
     if (tg && sessionToSend) {
       try {
+        addDebug('Calling sendData...');
         tg.sendData(sessionToSend);
-        console.log('sendData called successfully');
-        // close is called automatically after sendData, but call it just in case
-        setTimeout(() => tg.close(), 500);
+        addDebug('sendData OK, calling close in 500ms');
+        setTimeout(() => {
+          addDebug('Calling close()');
+          tg.close();
+        }, 500);
       } catch (e) {
-        console.error('sendData error:', e);
-        // Fallback: show success screen for manual copy
+        addDebug(`sendData error: ${e}`);
         setStep('success');
       }
     } else {
-      // Fallback if WebApp API not available
+      addDebug('Fallback to success screen');
       setStep('success');
     }
   };
 
   // Auto-send session to bot when in WebApp
   const handleAuthSuccess = (session: string) => {
+    addDebug(`handleAuthSuccess: isWebApp=${isWebApp}, session=${session.length} chars`);
     localStorage.removeItem('auth_phone');
     localStorage.removeItem('auth_sessionId');
     setSessionString(session);
 
     if (isWebApp) {
-      // Show success screen briefly, then send to bot
+      addDebug('Showing sending screen, will call sendToBot in 1.5s');
       setStep('sending');
       setTimeout(() => {
         sendToBot(session);
       }, 1500);
     } else {
-      // Show success screen for manual copy
+      addDebug('Not WebApp, showing success screen');
       setStep('success');
     }
   };
@@ -278,6 +299,15 @@ export default function AuthForm({ dict }: AuthFormProps) {
           />
         ))}
       </div>
+
+      {/* Debug info */}
+      {debugInfo.length > 0 && (
+        <div className="mb-4 p-2 bg-black/50 rounded text-xs text-green-400 font-mono max-h-32 overflow-auto">
+          {debugInfo.map((msg, i) => (
+            <div key={i}>{msg}</div>
+          ))}
+        </div>
+      )}
 
       {/* Info box */}
       {step !== 'success' && (
