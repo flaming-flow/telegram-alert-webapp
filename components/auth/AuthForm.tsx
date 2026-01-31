@@ -69,7 +69,7 @@ export default function AuthForm({ dict }: AuthFormProps) {
     console.log('WebApp check:', { hasTg: !!tg, initData: tg?.initData, platform: tg?.platform });
 
     // Check if WebApp is available (initData may be empty string in some cases)
-    if (tg && typeof tg.sendData === 'function') {
+    if (tg && typeof (tg as unknown as { sendData?: unknown }).sendData === 'function') {
       setIsWebApp(true);
       // Expand to full screen
       tg.expand?.();
