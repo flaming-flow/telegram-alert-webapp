@@ -64,9 +64,21 @@ export default function AuthForm({ dict }: AuthFormProps) {
 
   useEffect(() => {
     // Check if running in Telegram WebApp
-    const tg = (window as unknown as { Telegram?: { WebApp?: { initData?: string } } }).Telegram?.WebApp;
+    const tg = (window as unknown as { Telegram?: { WebApp?: { initData?: string; expand?: () => void; ready?: () => void } } }).Telegram?.WebApp;
     if (tg?.initData) {
       setIsWebApp(true);
+      // Expand to full screen
+      tg.expand?.();
+      tg.ready?.();
+    }
+
+    // Restore state from localStorage (for when user returns after getting code)
+    const savedPhone = localStorage.getItem('auth_phone');
+    const savedSessionId = localStorage.getItem('auth_sessionId');
+    if (savedPhone && savedSessionId) {
+      setPhone(savedPhone);
+      setSessionId(savedSessionId);
+      setStep('code');
     }
   }, []);
 
@@ -97,6 +109,9 @@ export default function AuthForm({ dict }: AuthFormProps) {
         setError(data.error);
       } else {
         setSessionId(data.sessionId);
+        // Save to localStorage so user can return after getting code
+        localStorage.setItem('auth_phone', phone);
+        localStorage.setItem('auth_sessionId', data.sessionId);
         setStep('code');
       }
     } catch {
@@ -129,6 +144,9 @@ export default function AuthForm({ dict }: AuthFormProps) {
         setStep('password');
       } else {
         setSessionString(data.session);
+        // Clear saved state on success
+        localStorage.removeItem('auth_phone');
+        localStorage.removeItem('auth_sessionId');
         setStep('success');
       }
     } catch {
@@ -159,6 +177,9 @@ export default function AuthForm({ dict }: AuthFormProps) {
         setError(data.error);
       } else {
         setSessionString(data.session);
+        // Clear saved state on success
+        localStorage.removeItem('auth_phone');
+        localStorage.removeItem('auth_sessionId');
         setStep('success');
       }
     } catch {
@@ -267,6 +288,9 @@ export default function AuthForm({ dict }: AuthFormProps) {
       {/* Code step */}
       {step === 'code' && (
         <form onSubmit={handleCodeSubmit}>
+          <div className="mb-3 text-center text-sm text-[var(--text-secondary)]">
+            {phone}
+          </div>
           <div className="mb-5">
             <label className="block text-sm font-medium text-[var(--text-secondary)] mb-2">
               {dict.code.label}
@@ -282,9 +306,23 @@ export default function AuthForm({ dict }: AuthFormProps) {
             />
             <p className="hint mt-2">{dict.code.hint}</p>
           </div>
-          <button type="submit" className="btn-primary w-full" disabled={loading}>
+          <button type="submit" className="btn-primary w-full mb-2" disabled={loading}>
             {loading ? <span className="spinner" /> : null}
             {dict.buttons.verify}
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              localStorage.removeItem('auth_phone');
+              localStorage.removeItem('auth_sessionId');
+              setPhone('');
+              setSessionId('');
+              setCode('');
+              setStep('phone');
+            }}
+            className="btn-secondary w-full"
+          >
+            {dict.buttons.back}
           </button>
         </form>
       )}

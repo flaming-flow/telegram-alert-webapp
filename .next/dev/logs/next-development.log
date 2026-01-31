@@ -1,7 +1,214 @@
-[00:00:01.052] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:00:01.138] Server  LOG     ✓ Ready in 892ms
-[00:00:05.543] Server  WARN    ⚠ Cross origin request detected from 192.168.18.141 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+[00:00:00.780] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:00:00.862] Server  LOG     ✓ Ready in 649ms
+[00:00:01.095] Server  WARN    ⚠ Cross origin request detected from 192.168.18.141 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
 Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
-[00:00:05.569] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:11.271] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:18.552] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:02.323] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:26.137] Server  LOG     [2026-01-31T18:56:36.635] [INFO] - [Running gramJS version 2.26.21]
+[00:00:26.140] Server  LOG     [2026-01-31T18:56:36.638] [INFO] - [Connecting to 149.154.167.91:80/TCPFull...]
+[00:00:28.041] Server  LOG     [2026-01-31T18:56:38.539] [INFO] - [Connection to 149.154.167.91:80/TCPFull complete!]
+[00:00:28.042] Server  LOG     [2026-01-31T18:56:38.541] [INFO] - [Using LAYER 198 for initial connect]
+[00:00:28.745] Server  LOG     [2026-01-31T18:56:39.243] [INFO] - [Phone migrated to 2]
+[00:00:28.959] Server  LOG     [2026-01-31T18:56:39.457] [INFO] - [Reconnecting to new data center 2]
+[00:00:29.169] Server  LOG     [2026-01-31T18:56:39.667] [WARN] - [Disconnecting...]
+[00:00:29.169] Server  LOG     [2026-01-31T18:56:39.668] [INFO] - [Disconnecting from 149.154.167.91:80/TCPFull...]
+[00:00:29.171] Server  LOG     [2026-01-31T18:56:39.669] [INFO] - [Connecting to 149.154.167.50:80/TCPFull...]
+[00:00:29.172] Server  LOG     [2026-01-31T18:56:39.671] [INFO] - [connection closed]
+[00:00:31.204] Server  LOG     [2026-01-31T18:56:41.703] [INFO] - [Connection to 149.154.167.50:80/TCPFull complete!]
+[00:00:31.205] Server  LOG     [2026-01-31T18:56:41.704] [INFO] - [Using LAYER 198 for initial connect]
+[00:01:46.928] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:57.507] Server  LOG     [2026-01-31T18:58:08.004] [INFO] - [Running gramJS version 2.26.21]
+[00:01:57.509] Server  LOG     [2026-01-31T18:58:08.006] [INFO] - [Connecting to 149.154.167.91:80/TCPFull...]
+[00:01:59.337] Server  LOG     [2026-01-31T18:58:09.834] [INFO] - [Connection to 149.154.167.91:80/TCPFull complete!]
+[00:01:59.337] Server  LOG     [2026-01-31T18:58:09.835] [INFO] - [Using LAYER 198 for initial connect]
+[00:02:00.114] Server  LOG     [2026-01-31T18:58:10.612] [INFO] - [Phone migrated to 2]
+[00:02:00.332] Server  LOG     [2026-01-31T18:58:10.829] [INFO] - [Reconnecting to new data center 2]
+[00:02:00.548] Server  LOG     [2026-01-31T18:58:11.045] [WARN] - [Disconnecting...]
+[00:02:00.548] Server  LOG     [2026-01-31T18:58:11.046] [INFO] - [Disconnecting from 149.154.167.91:80/TCPFull...]
+[00:02:00.550] Server  LOG     [2026-01-31T18:58:11.048] [INFO] - [Connecting to 149.154.167.50:80/TCPFull...]
+[00:02:00.552] Server  LOG     [2026-01-31T18:58:11.049] [INFO] - [connection closed]
+[00:02:02.844] Server  LOG     [2026-01-31T18:58:13.341] [INFO] - [Connection to 149.154.167.50:80/TCPFull complete!]
+[00:02:02.845] Server  LOG     [2026-01-31T18:58:13.342] [INFO] - [Using LAYER 198 for initial connect]
+[00:15:26.137] Server  LOG     [2026-01-31T19:11:36.538] [WARN] - [Disconnecting...]
+[00:15:26.138] Server  LOG     [2026-01-31T19:11:36.540] [INFO] - [Disconnecting from 149.154.167.50:80/TCPFull...]
+[00:15:26.139] Server  LOG     [2026-01-31T19:11:36.541] [WARN] - [Disconnecting...]
+[00:15:26.139] Server  LOG     [2026-01-31T19:11:36.541] [INFO] - [Disconnecting from 149.154.167.50:80/TCPFull...]
+[00:15:26.140] Server  LOG     [2026-01-31T19:11:36.541] [INFO] - [connection closed]
+[00:15:26.140] Server  LOG     [2026-01-31T19:11:36.542] [INFO] - [connection closed]
+[00:15:33.503] Server  ERROR   Error: TIMEOUT
+[00:15:33.589] Server  ERROR   Error: TIMEOUT
+[00:16:12.735] Server  ERROR   Error: TIMEOUT
+[00:16:12.807] Server  ERROR   Error: TIMEOUT
+[00:16:51.962] Server  ERROR   Error: TIMEOUT
+[00:16:52.023] Server  ERROR   Error: TIMEOUT
+[00:17:31.188] Server  ERROR   Error: TIMEOUT
+[00:17:31.237] Server  ERROR   Error: TIMEOUT
+[00:18:10.411] Server  ERROR   Error: TIMEOUT
+[00:18:10.451] Server  ERROR   Error: TIMEOUT
+[00:18:49.626] Server  ERROR   Error: TIMEOUT
+[00:18:49.668] Server  ERROR   Error: TIMEOUT
+[00:19:28.854] Server  ERROR   Error: TIMEOUT
+[00:19:28.885] Server  ERROR   Error: TIMEOUT
+[00:20:08.078] Server  ERROR   Error: TIMEOUT
+[00:20:08.100] Server  ERROR   Error: TIMEOUT
+[00:20:47.307] Server  ERROR   Error: TIMEOUT
+[00:20:47.311] Server  ERROR   Error: TIMEOUT
+[00:21:26.541] Server  ERROR   Error: TIMEOUT
+[00:21:26.545] Server  ERROR   Error: TIMEOUT
+[00:22:05.765] Server  ERROR   Error: TIMEOUT
+[00:22:05.770] Server  ERROR   Error: TIMEOUT
+[00:22:44.981] Server  ERROR   Error: TIMEOUT
+[00:22:44.986] Server  ERROR   Error: TIMEOUT
+[00:23:24.206] Server  ERROR   Error: TIMEOUT
+[00:23:24.210] Server  ERROR   Error: TIMEOUT
+[00:24:03.423] Server  ERROR   Error: TIMEOUT
+[00:24:03.428] Server  ERROR   Error: TIMEOUT
+[00:24:42.649] Server  ERROR   Error: TIMEOUT
+[00:24:42.653] Server  ERROR   Error: TIMEOUT
+[00:25:21.881] Server  ERROR   Error: TIMEOUT
+[00:25:21.885] Server  ERROR   Error: TIMEOUT
+[00:26:01.101] Server  ERROR   Error: TIMEOUT
+[00:26:01.104] Server  ERROR   Error: TIMEOUT
+[00:26:40.320] Server  ERROR   Error: TIMEOUT
+[00:26:40.324] Server  ERROR   Error: TIMEOUT
+[00:27:19.543] Server  ERROR   Error: TIMEOUT
+[00:27:19.547] Server  ERROR   Error: TIMEOUT
+[00:27:58.767] Server  ERROR   Error: TIMEOUT
+[00:27:58.772] Server  ERROR   Error: TIMEOUT
+[00:28:37.989] Server  ERROR   Error: TIMEOUT
+[00:28:37.993] Server  ERROR   Error: TIMEOUT
+[00:29:17.215] Server  ERROR   Error: TIMEOUT
+[00:29:17.219] Server  ERROR   Error: TIMEOUT
+[00:29:56.442] Server  ERROR   Error: TIMEOUT
+[00:29:56.446] Server  ERROR   Error: TIMEOUT
+[00:30:35.673] Server  ERROR   Error: TIMEOUT
+[00:30:35.677] Server  ERROR   Error: TIMEOUT
+[00:31:14.890] Server  ERROR   Error: TIMEOUT
+[00:31:14.894] Server  ERROR   Error: TIMEOUT
+[00:31:54.119] Server  ERROR   Error: TIMEOUT
+[00:31:54.126] Server  ERROR   Error: TIMEOUT
+[00:32:33.340] Server  ERROR   Error: TIMEOUT
+[00:32:33.345] Server  ERROR   Error: TIMEOUT
+[00:33:12.576] Server  ERROR   Error: TIMEOUT
+[00:33:12.579] Server  ERROR   Error: TIMEOUT
+[00:33:51.804] Server  ERROR   Error: TIMEOUT
+[00:33:51.809] Server  ERROR   Error: TIMEOUT
+[00:34:31.026] Server  ERROR   Error: TIMEOUT
+[00:34:31.031] Server  ERROR   Error: TIMEOUT
+[00:35:10.255] Server  ERROR   Error: TIMEOUT
+[00:35:10.259] Server  ERROR   Error: TIMEOUT
+[00:35:49.476] Server  ERROR   Error: TIMEOUT
+[00:35:49.479] Server  ERROR   Error: TIMEOUT
+[00:36:28.702] Server  ERROR   Error: TIMEOUT
+[00:36:28.707] Server  ERROR   Error: TIMEOUT
+[00:37:07.934] Server  ERROR   Error: TIMEOUT
+[00:37:07.939] Server  ERROR   Error: TIMEOUT
+[00:37:47.162] Server  ERROR   Error: TIMEOUT
+[00:37:47.166] Server  ERROR   Error: TIMEOUT
+[00:38:26.393] Server  ERROR   Error: TIMEOUT
+[00:38:26.397] Server  ERROR   Error: TIMEOUT
+[00:39:05.626] Server  ERROR   Error: TIMEOUT
+[00:39:05.631] Server  ERROR   Error: TIMEOUT
+[00:39:44.843] Server  ERROR   Error: TIMEOUT
+[00:39:44.845] Server  ERROR   Error: TIMEOUT
+[00:40:24.073] Server  ERROR   Error: TIMEOUT
+[00:40:24.077] Server  ERROR   Error: TIMEOUT
+[00:41:03.306] Server  ERROR   Error: TIMEOUT
+[00:41:03.310] Server  ERROR   Error: TIMEOUT
+[00:41:42.526] Server  ERROR   Error: TIMEOUT
+[00:41:42.531] Server  ERROR   Error: TIMEOUT
+[00:42:21.755] Server  ERROR   Error: TIMEOUT
+[00:42:21.759] Server  ERROR   Error: TIMEOUT
+[00:43:00.979] Server  ERROR   Error: TIMEOUT
+[00:43:00.981] Server  ERROR   Error: TIMEOUT
+[00:43:40.201] Server  ERROR   Error: TIMEOUT
+[00:43:40.204] Server  ERROR   Error: TIMEOUT
+[00:44:19.431] Server  ERROR   Error: TIMEOUT
+[00:44:19.436] Server  ERROR   Error: TIMEOUT
+[00:44:58.680] Server  ERROR   Error: TIMEOUT
+[00:44:58.685] Server  ERROR   Error: TIMEOUT
+[00:45:37.901] Server  ERROR   Error: TIMEOUT
+[00:45:37.906] Server  ERROR   Error: TIMEOUT
+[00:46:17.125] Server  ERROR   Error: TIMEOUT
+[00:46:17.129] Server  ERROR   Error: TIMEOUT
+[00:46:56.356] Server  ERROR   Error: TIMEOUT
+[00:46:56.361] Server  ERROR   Error: TIMEOUT
+[00:47:35.577] Server  ERROR   Error: TIMEOUT
+[00:47:35.582] Server  ERROR   Error: TIMEOUT
+[00:48:14.802] Server  ERROR   Error: TIMEOUT
+[00:48:14.805] Server  ERROR   Error: TIMEOUT
+[00:48:54.018] Server  ERROR   Error: TIMEOUT
+[00:48:54.020] Server  ERROR   Error: TIMEOUT
+[00:49:33.249] Server  ERROR   Error: TIMEOUT
+[00:49:33.253] Server  ERROR   Error: TIMEOUT
+[00:50:12.481] Server  ERROR   Error: TIMEOUT
+[00:50:12.485] Server  ERROR   Error: TIMEOUT
+[00:50:51.708] Server  ERROR   Error: TIMEOUT
+[00:50:51.712] Server  ERROR   Error: TIMEOUT
+[00:51:30.974] Server  ERROR   Error: TIMEOUT
+[00:51:30.977] Server  ERROR   Error: TIMEOUT
+[00:52:10.210] Server  ERROR   Error: TIMEOUT
+[00:52:10.214] Server  ERROR   Error: TIMEOUT
+[00:52:49.429] Server  ERROR   Error: TIMEOUT
+[00:52:49.434] Server  ERROR   Error: TIMEOUT
+[00:53:28.656] Server  ERROR   Error: TIMEOUT
+[00:53:28.660] Server  ERROR   Error: TIMEOUT
+[00:54:07.876] Server  ERROR   Error: TIMEOUT
+[00:54:07.880] Server  ERROR   Error: TIMEOUT
+[00:54:47.104] Server  ERROR   Error: TIMEOUT
+[00:54:47.108] Server  ERROR   Error: TIMEOUT
+[00:55:26.334] Server  ERROR   Error: TIMEOUT
+[00:55:26.338] Server  ERROR   Error: TIMEOUT
+[00:56:05.559] Server  ERROR   Error: TIMEOUT
+[00:56:05.565] Server  ERROR   Error: TIMEOUT
+[00:56:44.783] Server  ERROR   Error: TIMEOUT
+[00:56:44.787] Server  ERROR   Error: TIMEOUT
+[00:57:24.004] Server  ERROR   Error: TIMEOUT
+[00:57:24.008] Server  ERROR   Error: TIMEOUT
+[00:58:03.224] Server  ERROR   Error: TIMEOUT
+[00:58:03.229] Server  ERROR   Error: TIMEOUT
+[00:58:42.448] Server  ERROR   Error: TIMEOUT
+[00:58:42.452] Server  ERROR   Error: TIMEOUT
+[00:59:21.677] Server  ERROR   Error: TIMEOUT
+[00:59:21.681] Server  ERROR   Error: TIMEOUT
+[01:00:00.891] Server  ERROR   Error: TIMEOUT
+[01:00:00.894] Server  ERROR   Error: TIMEOUT
+[01:00:40.117] Server  ERROR   Error: TIMEOUT
+[01:00:40.121] Server  ERROR   Error: TIMEOUT
+[01:01:19.335] Server  ERROR   Error: TIMEOUT
+[01:01:19.339] Server  ERROR   Error: TIMEOUT
+[01:01:58.556] Server  ERROR   Error: TIMEOUT
+[01:01:58.560] Server  ERROR   Error: TIMEOUT
+[01:02:37.794] Server  ERROR   Error: TIMEOUT
+[01:02:37.797] Server  ERROR   Error: TIMEOUT
+[01:03:17.026] Server  ERROR   Error: TIMEOUT
+[01:03:17.030] Server  ERROR   Error: TIMEOUT
+[01:08:30.357] Server  ERROR   Error: TIMEOUT
+[01:08:30.361] Server  ERROR   Error: TIMEOUT
+[01:24:35.329] Server  ERROR   Error: TIMEOUT
+[01:24:35.333] Server  ERROR   Error: TIMEOUT
+[01:26:16.848] Server  ERROR   Error: TIMEOUT
+[01:26:16.850] Server  ERROR   Error: TIMEOUT
+[01:26:56.078] Server  ERROR   Error: TIMEOUT
+[01:26:56.081] Server  ERROR   Error: TIMEOUT
+[01:27:35.294] Server  ERROR   Error: TIMEOUT
+[01:27:35.297] Server  ERROR   Error: TIMEOUT
+[01:28:14.516] Server  ERROR   Error: TIMEOUT
+[01:28:14.521] Server  ERROR   Error: TIMEOUT
+[01:28:53.740] Server  ERROR   Error: TIMEOUT
+[01:28:53.744] Server  ERROR   Error: TIMEOUT
+[01:29:32.956] Server  ERROR   Error: TIMEOUT
+[01:29:32.961] Server  ERROR   Error: TIMEOUT
+[01:30:12.186] Server  ERROR   Error: TIMEOUT
+[01:30:12.189] Server  ERROR   Error: TIMEOUT
+[01:30:24.403] Server  LOG     ✓ Compiled in 373ms
+[01:30:51.415] Server  ERROR   Error: TIMEOUT
+[01:30:51.419] Server  ERROR   Error: TIMEOUT
+[01:31:15.147] Server  LOG     ✓ Compiled in 65ms
+[01:31:28.918] Server  LOG     ✓ Compiled in 55ms
+[01:31:30.652] Server  ERROR   Error: TIMEOUT
+[01:31:30.654] Server  ERROR   Error: TIMEOUT
+[01:31:42.192] Server  LOG     ✓ Compiled in 46ms
+[01:32:09.889] Server  ERROR   Error: TIMEOUT
+[01:32:09.892] Server  ERROR   Error: TIMEOUT
+[01:32:49.149] Server  ERROR   Error: TIMEOUT
+[01:32:49.153] Server  ERROR   Error: TIMEOUT

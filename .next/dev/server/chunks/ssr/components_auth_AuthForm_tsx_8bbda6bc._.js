@@ -27,6 +27,17 @@ function AuthForm({ dict }) {
         const tg = window.Telegram?.WebApp;
         if (tg?.initData) {
             setIsWebApp(true);
+            // Expand to full screen
+            tg.expand?.();
+            tg.ready?.();
+        }
+        // Restore state from localStorage (for when user returns after getting code)
+        const savedPhone = localStorage.getItem('auth_phone');
+        const savedSessionId = localStorage.getItem('auth_sessionId');
+        if (savedPhone && savedSessionId) {
+            setPhone(savedPhone);
+            setSessionId(savedSessionId);
+            setStep('code');
         }
     }, []);
     const handlePhoneSubmit = async (e)=>{
@@ -56,6 +67,9 @@ function AuthForm({ dict }) {
                 setError(data.error);
             } else {
                 setSessionId(data.sessionId);
+                // Save to localStorage so user can return after getting code
+                localStorage.setItem('auth_phone', phone);
+                localStorage.setItem('auth_sessionId', data.sessionId);
                 setStep('code');
             }
         } catch  {
@@ -89,6 +103,9 @@ function AuthForm({ dict }) {
                 setStep('password');
             } else {
                 setSessionString(data.session);
+                // Clear saved state on success
+                localStorage.removeItem('auth_phone');
+                localStorage.removeItem('auth_sessionId');
                 setStep('success');
             }
         } catch  {
@@ -120,6 +137,9 @@ function AuthForm({ dict }) {
                 setError(data.error);
             } else {
                 setSessionString(data.session);
+                // Clear saved state on success
+                localStorage.removeItem('auth_phone');
+                localStorage.removeItem('auth_sessionId');
                 setStep('success');
             }
         } catch  {
@@ -175,7 +195,7 @@ function AuthForm({ dict }) {
                         children: dict.title
                     }, void 0, false, {
                         fileName: "[project]/components/auth/AuthForm.tsx",
-                        lineNumber: 206,
+                        lineNumber: 227,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -183,13 +203,13 @@ function AuthForm({ dict }) {
                         children: dict.subtitle
                     }, void 0, false, {
                         fileName: "[project]/components/auth/AuthForm.tsx",
-                        lineNumber: 209,
+                        lineNumber: 230,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/auth/AuthForm.tsx",
-                lineNumber: 205,
+                lineNumber: 226,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -202,12 +222,12 @@ function AuthForm({ dict }) {
                         className: `w-2 h-2 rounded-full transition-colors ${n < getStepNumber() ? 'bg-green-500' : n === getStepNumber() ? 'bg-[var(--accent)]' : 'bg-[var(--bg-tertiary)]'}`
                     }, n, false, {
                         fileName: "[project]/components/auth/AuthForm.tsx",
-                        lineNumber: 217,
+                        lineNumber: 238,
                         columnNumber: 11
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/components/auth/AuthForm.tsx",
-                lineNumber: 215,
+                lineNumber: 236,
                 columnNumber: 7
             }, this),
             step !== 'success' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -215,7 +235,7 @@ function AuthForm({ dict }) {
                 children: dict.info
             }, void 0, false, {
                 fileName: "[project]/components/auth/AuthForm.tsx",
-                lineNumber: 232,
+                lineNumber: 253,
                 columnNumber: 9
             }, this),
             error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -223,7 +243,7 @@ function AuthForm({ dict }) {
                 children: error
             }, void 0, false, {
                 fileName: "[project]/components/auth/AuthForm.tsx",
-                lineNumber: 239,
+                lineNumber: 260,
                 columnNumber: 9
             }, this),
             step === 'phone' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -237,7 +257,7 @@ function AuthForm({ dict }) {
                                 children: dict.phone.label
                             }, void 0, false, {
                                 fileName: "[project]/components/auth/AuthForm.tsx",
-                                lineNumber: 248,
+                                lineNumber: 269,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -248,7 +268,7 @@ function AuthForm({ dict }) {
                                 autoFocus: true
                             }, void 0, false, {
                                 fileName: "[project]/components/auth/AuthForm.tsx",
-                                lineNumber: 251,
+                                lineNumber: 272,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -256,13 +276,13 @@ function AuthForm({ dict }) {
                                 children: dict.phone.hint
                             }, void 0, false, {
                                 fileName: "[project]/components/auth/AuthForm.tsx",
-                                lineNumber: 258,
+                                lineNumber: 279,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/auth/AuthForm.tsx",
-                        lineNumber: 247,
+                        lineNumber: 268,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -274,20 +294,20 @@ function AuthForm({ dict }) {
                                 className: "spinner"
                             }, void 0, false, {
                                 fileName: "[project]/components/auth/AuthForm.tsx",
-                                lineNumber: 261,
+                                lineNumber: 282,
                                 columnNumber: 24
                             }, this) : null,
                             dict.buttons.sendCode
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/auth/AuthForm.tsx",
-                        lineNumber: 260,
+                        lineNumber: 281,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/auth/AuthForm.tsx",
-                lineNumber: 246,
+                lineNumber: 267,
                 columnNumber: 9
             }, this),
             step === 'code' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -301,7 +321,7 @@ function AuthForm({ dict }) {
                                 children: dict.code.label
                             }, void 0, false, {
                                 fileName: "[project]/components/auth/AuthForm.tsx",
-                                lineNumber: 271,
+                                lineNumber: 292,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -314,7 +334,7 @@ function AuthForm({ dict }) {
                                 autoFocus: true
                             }, void 0, false, {
                                 fileName: "[project]/components/auth/AuthForm.tsx",
-                                lineNumber: 274,
+                                lineNumber: 295,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -322,13 +342,13 @@ function AuthForm({ dict }) {
                                 children: dict.code.hint
                             }, void 0, false, {
                                 fileName: "[project]/components/auth/AuthForm.tsx",
-                                lineNumber: 283,
+                                lineNumber: 304,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/auth/AuthForm.tsx",
-                        lineNumber: 270,
+                        lineNumber: 291,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -340,20 +360,20 @@ function AuthForm({ dict }) {
                                 className: "spinner"
                             }, void 0, false, {
                                 fileName: "[project]/components/auth/AuthForm.tsx",
-                                lineNumber: 286,
+                                lineNumber: 307,
                                 columnNumber: 24
                             }, this) : null,
                             dict.buttons.verify
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/auth/AuthForm.tsx",
-                        lineNumber: 285,
+                        lineNumber: 306,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/auth/AuthForm.tsx",
-                lineNumber: 269,
+                lineNumber: 290,
                 columnNumber: 9
             }, this),
             step === 'password' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -367,7 +387,7 @@ function AuthForm({ dict }) {
                                 children: dict.password.label
                             }, void 0, false, {
                                 fileName: "[project]/components/auth/AuthForm.tsx",
-                                lineNumber: 296,
+                                lineNumber: 317,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -378,7 +398,7 @@ function AuthForm({ dict }) {
                                 autoFocus: true
                             }, void 0, false, {
                                 fileName: "[project]/components/auth/AuthForm.tsx",
-                                lineNumber: 299,
+                                lineNumber: 320,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -386,13 +406,13 @@ function AuthForm({ dict }) {
                                 children: dict.password.hint
                             }, void 0, false, {
                                 fileName: "[project]/components/auth/AuthForm.tsx",
-                                lineNumber: 306,
+                                lineNumber: 327,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/auth/AuthForm.tsx",
-                        lineNumber: 295,
+                        lineNumber: 316,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -404,20 +424,20 @@ function AuthForm({ dict }) {
                                 className: "spinner"
                             }, void 0, false, {
                                 fileName: "[project]/components/auth/AuthForm.tsx",
-                                lineNumber: 309,
+                                lineNumber: 330,
                                 columnNumber: 24
                             }, this) : null,
                             dict.buttons.submit
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/auth/AuthForm.tsx",
-                        lineNumber: 308,
+                        lineNumber: 329,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/auth/AuthForm.tsx",
-                lineNumber: 294,
+                lineNumber: 315,
                 columnNumber: 9
             }, this),
             step === 'success' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -427,7 +447,7 @@ function AuthForm({ dict }) {
                         children: dict.success.title
                     }, void 0, false, {
                         fileName: "[project]/components/auth/AuthForm.tsx",
-                        lineNumber: 318,
+                        lineNumber: 339,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -435,7 +455,7 @@ function AuthForm({ dict }) {
                         children: dict.success.sessionLabel
                     }, void 0, false, {
                         fileName: "[project]/components/auth/AuthForm.tsx",
-                        lineNumber: 322,
+                        lineNumber: 343,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -443,7 +463,7 @@ function AuthForm({ dict }) {
                         children: sessionString
                     }, void 0, false, {
                         fileName: "[project]/components/auth/AuthForm.tsx",
-                        lineNumber: 325,
+                        lineNumber: 346,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -455,7 +475,7 @@ function AuthForm({ dict }) {
                                 children: copied ? dict.success.copied : dict.success.copy
                             }, void 0, false, {
                                 fileName: "[project]/components/auth/AuthForm.tsx",
-                                lineNumber: 330,
+                                lineNumber: 351,
                                 columnNumber: 13
                             }, this),
                             isWebApp && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -467,7 +487,7 @@ function AuthForm({ dict }) {
                                 children: dict.success.sendToBot
                             }, void 0, false, {
                                 fileName: "[project]/components/auth/AuthForm.tsx",
-                                lineNumber: 335,
+                                lineNumber: 356,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -476,25 +496,25 @@ function AuthForm({ dict }) {
                                 children: dict.success.download
                             }, void 0, false, {
                                 fileName: "[project]/components/auth/AuthForm.tsx",
-                                lineNumber: 344,
+                                lineNumber: 365,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/auth/AuthForm.tsx",
-                        lineNumber: 329,
+                        lineNumber: 350,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/auth/AuthForm.tsx",
-                lineNumber: 317,
+                lineNumber: 338,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/auth/AuthForm.tsx",
-        lineNumber: 204,
+        lineNumber: 225,
         columnNumber: 5
     }, this);
 }

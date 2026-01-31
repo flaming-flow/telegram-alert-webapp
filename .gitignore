@@ -9,6 +9,7 @@ binaries/
 
 # Environment variables (may contain API credentials)
 .env
+.env.local
 
 # Session files (contain sensitive auth tokens)
 telegram-session-*.txt
